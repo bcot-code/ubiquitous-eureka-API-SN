@@ -1,4 +1,4 @@
-const { User } = require("../models/User");
+const { User, Thought } = require("../models/User");
 
 module.exports = {
   // /api/users
@@ -71,17 +71,52 @@ module.exports = {
   // DELETE to remove user by id
   deleteUser(req, res) {
     User.remove({ _id: req.params.userId })
-      .then(() => {
-        res.json({ removed: req.params.userId });
+      .then((user) => {
+        if (!user) {
+          res.json({ removed: req.params.userId });
+        }
+        //BONUS: Remove a user's associated thoughts when deleted.
+        return Thought.deleteMany({ _id: { $in: user.thoughts } });
+      })
+      .then(() =>
+        res.json({ message: "User and their thoughts have been deleted." })
+      )
+      .catch((err) => res.status(500).json(err));
+  },
+  // /api/users/:userId/friends/:friendId
+  //POST to add a new friend to the users friend list
+  addFriend(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $push: { friends: req.params.friendId } },
+      { new: true }
+    )
+      .then((users) => {
+        if (!users) {
+          return res
+            .status(404)
+            .json({ message: "No user found with this id!" });
+        }
+        res.json(user);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  },
+  //DELETE to remove a friend from the user's friend list
+  removeFriend(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $pull: { friends: req.params.friendId } },
+      { new: true }
+    )
+      .then((users) => {
+        if (!users.friends.length) {
+          users.friends = [];
+        }
+        res.json(users);
       })
       .catch((err) => res.status(500).json(err));
   },
 };
-//BONUS: Remove a user's associated thoughts when deleted.
-Thought.deleteMany({ username: req.params.username })
-  .exec()
-  .then(() => res.jsons({ message: "Thoughts have been cleared!" }));
-
-// /api/users/:userId/friends/:friendId
-//POST to add a new friend to the users friend list
-//DELETE to remove a friend from the user's friend list
