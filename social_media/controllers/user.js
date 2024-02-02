@@ -1,6 +1,5 @@
 const { User } = require("../models/User");
 
-
 module.exports = {
   // get all users
   getUsers(req, res) {
@@ -17,7 +16,7 @@ module.exports = {
       });
   },
   // get single uer by id and populated thought and friend data
-  getUserById(req, res) {
+  getSingleUser(req, res) {
     User.findOne({ username: req.params.username })
       .populate({
         path: "thoughts",
