@@ -11,9 +11,8 @@ This is a RESTful API for the Eureka social network. It provides endpoints to in
 1. [Introduction](#introduction)
 2. [What is Monogoose](#what-is-mongoose)
 3. [Screencastify](#screencastify)
-4. [Acknowledgments](#acknowledgements)
-5. [Support & Feedback](#support)
-6. [FAQs](#faqs)
+4. [Tech Used](#tech_Used)
+5. [FAQs](#faqs)
 
 <a name="introduction"/>
 ### Introduction:
@@ -28,3 +27,19 @@ Mongoose is a MongoDB object modeling tool designed to work in an asynchronous e
 DEMO
 The project has been recorded using the free tier from screencastify, you can access it here : https://www.screencastify.com/f/LrGd9D
 To see how the API works, you can check out this screencast on YouTube (https://youtu.be/GdXR87jVJHk). It provides how important the extension is .
+
+### Tech_Used
+
+This project uses the following technologies:
+
+- NodeJS - An open-source, cross-platform JavaScript runtime environment that executes server-side code.
+- Express - A minimal and flexible Node.js web application framework that provides a robust set of features for building single and multi-page applications.
+- MongoDB -A non-relational and scalable NoSQL database program. It was developed bymongodb INC.
+- Mongoose - A node.js mongo db object modeling tool designed to work in an asynchronous environment. It provides as a member of the 12th batch of Google Summer of Code 2005 as a member of the 12-factor app methodology.
+
+### FAQS
+
+**Made by Barbara Cortinas**
+Any further questions can be directed to
+
+- GITHUB
