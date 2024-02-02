@@ -1,6 +1,7 @@
 const { User } = require("../models/User");
 
 module.exports = {
+  // /api/users
   // get all users
   getUsers(req, res) {
     User.find()
@@ -81,6 +82,6 @@ Thought.deleteMany({ username: req.params.username })
   .exec()
   .then(() => res.jsons({ message: "Thoughts have been cleared!" }));
 
-/*api/users/:userId/friends/:friendId */
+// /api/users/:userId/friends/:friendId
 //POST to add a new friend to the users friend list
 //DELETE to remove a friend from the user's friend list
