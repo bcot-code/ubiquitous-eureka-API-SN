@@ -51,4 +51,4 @@ This project uses the following technologies:
 **Made by Barbara Cortinas**
 Any further questions can be directed to
 
-- GITHUB ()
+- GITHUB (https://github.com/bcot-code/ubiquitous-eureka-API-SN)
