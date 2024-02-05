@@ -1,44 +1,73 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, Types } = require("mongoose");
+const dateFormat = (date) => {
+  return date.toISOString().slice(0, 10);
+};
+// Schema to create Reaction
+const reactionSchema = new Schema(
+  {
+    reactionId: {
+      type: Schema.Types.ObjectId,
+      default: () => new Types.ObjectId(),
+    },
+    reactionBody: {
+      type: String,
+      required: true,
+      maxlength: 280,
+    },
+    //reaction needs to have a user, the type of reaction (upvote or downvote), and the post it is on.
+    username: { type: String, required: true },
 
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      //Use a getter method to format the timestamp on query
+      get: (createdAtVal) => dateFormat(createdAtVal),
+    },
+  },
+  {
+    toJSON: {
+      getters: true,
+    },
+    id: false,
+  }
+);
 // Schema to create Thought model
-const thoughtSchema = new Schema({
-  thoughtText: {
-    type: String,
-    required: "You must think of something!",
-    minlength: 1,
-    maxlength: 280,
+const thoughtSchema = new Schema(
+  {
+    thoughtText: {
+      type: String,
+      required: "You must think of something!",
+      minlength: 1,
+      maxlength: 280,
+    },
+    createdAt: {
+      type: Date,
+      default: () => new Date(),
+      //Use a getter method to format the timestamp on query
+      get: (createdAtVal) => dateFormat(createdAtVal),
+    },
+    username: {
+      type: String,
+      ref: "User",
+    },
+    // Array to hold references to associated reactions
+    reactions: {
+      type: [reactionSchema],
+    },
   },
-  createdAt: {
-    type: Date,
-    default: () => new Date(),
-    //Use a getter method to format the timestamp on query
-    get: (createdAtVal) =>
-      createdAtVal.toDateString() +
-      " " +
-      createdAtVal.toTimeString().split("GMT")[0] +
-      " UTC",
-  },
-  username: {
-    type: String,
-    ref: "User",
-  },
-  // Array to hold references to associated reactions
-  reactions: {
-    type: [reactionSchema],
-    default: [],
-  },
-});
+  {
+    toJSON: {
+      virtuals: true,
+      getters: true,
+    },
+    id: false,
+  }
+);
 //Create a virtual called reactionCount that retrieves the length of the thought's reactions array field on query.
 thoughtSchema.virtual("reactionCount").get(function () {
   return this.reactions.length;
 });
 
-// Create a method on the Thought model called `addReaction` that will add
-// a reaction to a thought by pushing the passed data in as an object into the reactions array
-thoughtSchema.methods.addReaction = function (reaction) {
-  this.reactions.push(reaction);
-  return this.save();
-};
 //Initialize our Thought model
 const Thought = model("Thought", thoughtSchema);
 
