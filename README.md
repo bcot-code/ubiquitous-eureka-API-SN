@@ -14,8 +14,8 @@ This is a RESTful API for the Eureka social network. It provides endpoints to in
 4. [Tech Used](#tech_Used)
 5. [FAQs](#faqs)
 
-<a name="introduction"/>
 ### Introduction:
+
 The Ubiquitous Eureka - API SN (Social Network) is a RESTful web service that provides access to social networking data through HTTP requests. It allows developers to interact with to make a friends list , able to create thougts ,and delete if need be.
 
 ### What is Mongoose?
@@ -25,7 +25,16 @@ Mongoose is a MongoDB object modeling tool designed to work in an asynchronous e
 ### Screencastify
 
 DEMO
-The project has been recorded using the free tier from screencastify, you can access it here : https://www.screencastify.com/f/LrGd9D
+The project has been recorded using the free tier from screencastify, you can access it here :
+
+- part 1 [USER & DELETE USER](https://app.screencastify.com/v3/watch/fe0ckrpgCdbccnB2s0lu)
+
+**LOOM**
+
+- part 2 [THOUGHT, REACTION AND ADD FRIENDS](https://www.loom.com/share/a481da32de3d4c45943a8dc33d0fd898?sid=e8de200d-407d-4398-9146-3d8aaff3909c)
+
+#### Note: Had to use LOOM as ScreenCastify's storage was not reliable at the time of recording. Loom is other Best free online screen recording tool with advanced video editing and video storage trusted by over 21 million people and easy sharing from Loom.com.
+
 To see how the API works, you can check out this screencast on YouTube (https://youtu.be/GdXR87jVJHk). It provides how important the extension is .
 
 ### Tech_Used
@@ -42,4 +51,4 @@ This project uses the following technologies:
 **Made by Barbara Cortinas**
 Any further questions can be directed to
 
-- GITHUB
+- GITHUB ()
